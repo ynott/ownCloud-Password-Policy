@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<info>
+    <id>password_policy</id>
+    <name>Password Policy Enforcement</name>
+    <description>Enforce restrictions on password length and makeup.</description>
+    <version>0.1</version>
+    <licence>AGPL</licence>
+    <author>Nick Booth</author>
+    <require>5</require>
+</info>
