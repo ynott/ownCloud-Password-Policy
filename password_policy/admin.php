@@ -5,7 +5,7 @@
 OC_Util::checkAdminUser();
 \OCP\Util::addScript('password_policy', 'password_policy_admin');
 
-$tpl = new OCP\Template("password_policy", "password_policy_admin", "user");
+$tpl = new OCP\Template("password_policy", "password_policy_admin");
 $tpl->assign('msg', 'Password Policy Enforcement');
 
 $minlength = OC_Password_Policy::getMinLength();
@@ -17,9 +17,10 @@ $specialcharacters = OC_Password_Policy::getSpecialChars();
 $specialcharacters = ($specialcharacters==1)?"checked":"";
 $specialcharslist = OC_Password_Policy::getSpecialCharsList();
 
+$tpl->assign('numbers', $numbers);
 $tpl->assign('minlength', $minlength);
 $tpl->assign('mixedcase', $mixedcase);
 $tpl->assign('specialcharacters', $specialcharacters);
 $tpl->assign('specialcharslist', $specialcharslist);
 
-$tpl->printPage();
+return $tpl->fetchPage();

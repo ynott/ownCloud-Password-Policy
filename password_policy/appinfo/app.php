@@ -4,9 +4,9 @@ OC::$CLASSPATH['OC_password_policy_Hooks'] = 'password_policy/lib/hooks.php';
 OC::$CLASSPATH['OC_Password_Policy'] = 'password_policy/lib/password_policy.php';
 OCP\Util::connectHook('OC_User', 'pre_setPassword', 'OC_password_policy_Hooks', 'pre_setPassword');
 
-//\OCP\App::registerAdmin('password_policy','main');
+OCP\App::registerAdmin('password_policy','admin');
 OCP\App::registerPersonal('password_policy', 'personal');
-
+/*
 if(OC_User::isAdminUser(OC_User::getUser())){
 	\OCP\App::addNavigationEntry(array(
 	
@@ -28,4 +28,4 @@ if(OC_User::isAdminUser(OC_User::getUser())){
 	    // navigation or on the settings page of your app
 	    'name' => 'Pwd. Policy'
 	));
-}
+}*/

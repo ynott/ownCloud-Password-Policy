@@ -1,4 +1,6 @@
 <?php
+require_once("lib/PasswordGenerator.php");
+
 \OCP\Util::addScript('password_policy', 'password_policy_user');
 $tpl = new OCP\Template('password_policy', 'password_policy_user');
 
@@ -20,14 +22,8 @@ if(OC_Password_Policy::getSpecialChars())
 }
 
 $tpl->assign('minlength', $minlength);
-$n=0;
-$limit=1000; //limit this to 1000 attempts to generate a compliant password
-$examplepass = genpass();
-while(!OC_Password_Policy::testPassword($examplepass) && $n < $limit)
-{
-	$examplepass = genpass($minlength);
-	$n++;
-}
+
+$examplepass = genpass($minlength);
 
 $tpl->assign('examplepass',$examplepass);
 
@@ -37,12 +33,8 @@ return $tpl->fetchPage();
 function genpass($minlength)
 {
 	$chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'.OC_Password_Policy::getSpecialCharsList();
-	$count = mb_strlen($chars);
 	
-	for ($i = 0, $result = ''; $i < $minlength; $i++) {
-	    $index = rand(0, $count - 1);
-	    $result .= mb_substr($chars, $index, 1);
-	}
+	$result = PasswordGenerator::getCustomPassword(str_split($chars), $minlength);
 	
 	return $result;
 }

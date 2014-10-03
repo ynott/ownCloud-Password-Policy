@@ -1,5 +1,5 @@
 <?php
-
+\OCP\JSON::callCheck();
 OCP\JSON::checkLoggedIn();
 OCP\JSON::checkAppEnabled('password_policy');
 

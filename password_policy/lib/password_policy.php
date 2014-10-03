@@ -52,14 +52,15 @@ class OC_Password_Policy {
 		
 		if ($row = $result->fetchRow()){
 			//update
-			$sql = "update `*PREFIX*password_policy_items` set min_length=$limit where id=1";
+			$sql = "update `*PREFIX*password_policy_items` set min_length=? where id=1";
 		}
 		else
 		{//insert new
-			$sql = "insert into `*PREFIX*password_policy_items` (min_length) values ($limit)";
+			$sql = "insert into `*PREFIX*password_policy_items` (min_length) values (?)";
 		}
 		
 		$query = OCP\DB::prepare($sql);
+		$query->bindParam(1, $limit, \PDO::PARAM_INT);
 		$result = $query->execute();	
 	}
 	
@@ -71,15 +72,16 @@ class OC_Password_Policy {
 		
 		if ($row = $result->fetchRow()){
 			//update
-			$sql = 'update `*PREFIX*password_policy_items` set specialcharslist="'.$list.'" where id=1';
+			$sql = 'update `*PREFIX*password_policy_items` set specialcharslist=? where id=1';
 		}
 		else
 		{//insert new
-			$list= mysqli_real_escape_string ($query->conn->_conn, $list);
-			$sql = 'insert into `*PREFIX*password_policy_items` (specialcharslist) values ("'.$list.'")';
+			
+			$sql = 'insert into `*PREFIX*password_policy_items` (specialcharslist) values (?)';
 		}
 		
 		$query = OCP\DB::prepare($sql);
+		$query->bindParam(1, $list, \PDO::PARAM_STR);
 		$result = $query->execute();	
 	}
 	
@@ -91,14 +93,15 @@ class OC_Password_Policy {
 		
 		if ($row = $result->fetchRow()){
 			//update
-			$sql = "update `*PREFIX*password_policy_items` set specialcharacters=$specialcharsrequired where id=1";
+			$sql = "update `*PREFIX*password_policy_items` set specialcharacters=? where id=1";
 		}
 		else
 		{//insert new
-			$sql = "insert into `*PREFIX*password_policy_items` (specialcharacters) values ($specialcharsrequired)";
+			$sql = "insert into `*PREFIX*password_policy_items` (specialcharacters) values (?)";
 		}
 		
 		$query = OCP\DB::prepare($sql);
+		$query->bindParam(1, $specialcharsrequired, \PDO::PARAM_INT);
 		$result = $query->execute();	
 	}
 	
@@ -110,14 +113,15 @@ class OC_Password_Policy {
 		
 		if ($row = $result->fetchRow()){
 			//update
-			$sql = "update `*PREFIX*password_policy_items` set mixedcase=$mixedcase where id=1";
+			$sql = "update `*PREFIX*password_policy_items` set mixedcase=? where id=1";
 		}
 		else
 		{//insert new
-			$sql = "insert into `*PREFIX*password_policy_items` (mixedcase) values ($mixedcase)";
+			$sql = "insert into `*PREFIX*password_policy_items` (mixedcase) values (?)";
 		}
 		
 		$query = OCP\DB::prepare($sql);
+		$query->bindParam(1, $mixedcase, \PDO::PARAM_INT);
 		$result = $query->execute();	
 	}
 
@@ -129,14 +133,15 @@ class OC_Password_Policy {
 		
 		if ($row = $result->fetchRow()){
 			//update
-			$sql = "update `*PREFIX*password_policy_items` set numbers=$numbers where id=1";
+			$sql = "update `*PREFIX*password_policy_items` set numbers=? where id=1";
 		}
 		else
 		{//insert new
-			$sql = "insert into `*PREFIX*password_policy_items` (numbers) values ($numbers)";
+			$sql = "insert into `*PREFIX*password_policy_items` (numbers) values (?)";
 		}
 		
 		$query = OCP\DB::prepare($sql);
+		$query->bindParam(1, $numbers, \PDO::PARAM_INT);
 		$result = $query->execute();	
 	}
 	

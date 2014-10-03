@@ -1,5 +1,5 @@
 <?php
-
+\OCP\JSON::callCheck();
 OCP\JSON::checkLoggedIn();
 OCP\JSON::checkAppEnabled('password_policy');
 
@@ -22,7 +22,7 @@ if(isset($_POST['password_policy']) && OC_User::isAdminUser(OC_User::getUser()))
 	{
 		$numbers = ($_POST['password_policy']['numbers'] == "true")?1:0;
 		
-		OC_Password_Policy::setMixedCase($numbers);
+		OC_Password_Policy::setNumbers($numbers);
 	}
 
 	if(isset($_POST['password_policy']['specialcharacters']))

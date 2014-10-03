@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	$('.password_policy').submit(function(event){savePolicy(event)});
+	$('#password_policy').submit(function(event){savePolicy(event)});
 });
 
 function savePolicy(event) {
@@ -7,10 +7,11 @@ function savePolicy(event) {
 	//url = $('#add_url').val();
 	var len = $('#password_policy_min_length').val();
 	var mixedcase = $('#password_policy_mixed_case').prop('checked');
+	var numbers = $('#password_policy_numbers').prop('checked');
 	var specialcharslist = $('#password_policy_special_chars_list').val();
 	var specialcharacters = $('#password_policy_special_characters').prop('checked');
 	
-	var password_policy = {minlength: len, mixedcase: mixedcase, specialcharslist: specialcharslist, specialcharacters: specialcharacters};
+	var password_policy = {minlength: len, mixedcase: mixedcase, specialcharslist: specialcharslist, specialcharacters: specialcharacters, numbers: numbers};
 	
 	$.ajax({
 		type: 'POST',
